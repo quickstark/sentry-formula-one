@@ -1,3 +1,7 @@
+on:
+  push:
+    branches: [ main ]
+    
 - name: Sentry Release
   uses: getsentry/action-release@v1.2.0
 env:
