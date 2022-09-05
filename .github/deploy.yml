@@ -1,14 +1,20 @@
+name: Deploy
+
 on:
   push:
-    branches: [ main ]
-    
-- name: Sentry Release
-  uses: getsentry/action-release@v1.2.0
-env:
-    SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-    SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-    SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+    branches: [main]
+
+jobs:
+  deploy:
+    steps:
+      - uses: actions/checkout@v2
+      - name: Sentry Release
+    uses: getsentry/action-release@v1.2.0
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 with:
-    environment: production
-    version: 'sentry-formula-one@1.0.1'
-    sourcemaps: './build/assets'
+  environment: production
+  version: "sentry-formula-one@1.0.1"
+  sourcemaps: "./build/assets"
