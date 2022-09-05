@@ -6,4 +6,5 @@ env:
     SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 with:
     environment: production
+    version: 'sentry-formula-one@1.0.1'
     sourcemaps: './build/assets'
