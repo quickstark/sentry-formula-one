@@ -19,5 +19,6 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
+          fetch-depth: 0
           version: "sentry-formula-one@1.0.1"
           sourcemaps: "./build/assets"
