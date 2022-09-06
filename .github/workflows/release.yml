@@ -7,6 +7,7 @@ on:
 
 jobs:
   generate_git_tags:
+    name: 'GitHub Tags'
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"
@@ -40,6 +41,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
+      
+      - name: echo new tag
+        run: |
+          echo "The next tag version will be: ${{ steps.taggerFinal.outputs.new_tag }}"
 
   generate_git_release:
     needs: generate_git_tags
