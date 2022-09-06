@@ -6,7 +6,7 @@ import { useEnvContext } from "./Context";
 
 function UserException(message) {
   this.message = message;
-  this.name = "InvalidCounter";
+  this.name = "Invalid User in Release sentry-formula-one";
 }
 
 export default function Index() {
@@ -14,7 +14,7 @@ export default function Index() {
 
   function handleClick() {
     setCount((count) => count + 1);
-    throw new UserException("InvalidCount");
+    throw new UserException("Newer Error to Test");
     Sentry.withScope(function (scope) {
       scope.addEventProcessor(function (event, hint) {
         console.log(`With Scope: ${event}`);
