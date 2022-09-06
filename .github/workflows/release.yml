@@ -1,5 +1,4 @@
----
-name: 'Release'
+name: Release
 
 on:
   workflow_dispatch:
@@ -20,10 +19,10 @@ jobs:
 
     steps:
       # Checkout sources
-      - name: 'Checkout'
-        uses: actions/checkout@v3
+      - name: "Checkout"
+        uses: "actions/checkout@v3"
 
-      - uses: 'rui-costa/action-automatic-semver-releases@@1.1.1'
+      - uses: "rui-costa/action-automatic-semver-releases@1.1.1"
         with:
           TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           SEMVER: '${{ github.event.inputs.semver }}'
