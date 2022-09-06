@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Info
         run: echo "$GITHUB_CONTEXT"
-        
+
   generate_git_tags:
     name: 'GitHub Tags'
     runs-on: ubuntu-latest
@@ -78,6 +78,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Split Repo Name
+        uses: jungwinter/split@v2
+        id: split_repo_name
+        with:
+            msg: ${{ github.repository }}
+            separator: "/"
+            maxsplit: 1
+      - name: Echo Repo Name
+        run: echo "${{ steps.split_repo_name.outputs._1}}"
       - name: Sentry Release
         uses: getsentry/action-release@v1.2.0
         env:
@@ -86,5 +95,5 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          version: "${{ needs.generate_git_tags.outputs.output_new_tag }}"
+          version: "${{ steps.split_repo_name.outputs._1}}@${{ needs.generate_git_tags.outputs.output_new_tag }}"
           sourcemaps: "./build/assets"
