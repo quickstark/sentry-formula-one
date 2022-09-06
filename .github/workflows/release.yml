@@ -1,38 +1,60 @@
 name: Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      semver:
-        description: 'Which version you want to increment? Use MAJOR, MINOR or PATCH'
-        required: true
-        default: 'PATCH'
-      label:
-        description: 'Add Labels. i.e final, alpha, rc'
-        required: false
-        default: ''
+  push:
+    branches:
+      - main
 
 jobs:
-  git_release:
-    name: 'Release Dry Run'
-    runs-on: 'ubuntu-latest'
-
+  generate_git_tags:
+    runs-on: ubuntu-latest
     steps:
-      # Checkout sources
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: "Checkout"
+        uses: "actions/checkout@v3"
         with:
           fetch-depth: 0
 
-      - name: Auto Semver 
-        uses: "rui-costa/action-automatic-semver-releases@1.1.1"
-        with:
-          TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          SEMVER: '${{ github.event.inputs.semver }}'
-          LABEL: '${{ github.event.inputs.label }}'
+      # - name: Generate Dry Run Version
+      #   id: taggerDryRun
+      #   uses: anothrNick/github-tag-action@1.36.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     WITH_V: true
+      #     DRY_RUN: true
 
-  sentry_release:
-    needs: git_release
+      # - name: echo new tag
+      #   run: |
+      #     echo "The next tag version will be: ${{ steps.taggerDryRun.outputs.new_tag }}"
+
+      # - name: echo tag
+      #   run: |
+      #     echo "The current tag is: ${{ steps.taggerDryRun.outputs.tag }}"
+
+      # - name: echo part
+      #   run: |
+      #     echo "The version increment was: ${{ steps.taggerDryRun.outputs.part }}"
+
+      - name: Generate Final Version
+        id: taggerFinal
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+
+  generate_git_release:
+    needs: generate_git_tags
+    name: 'GitHub Release'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Create Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "${{ steps.taggerFinal.outputs.new_tag }}"
+
+  generate_sentry_release:
+    needs: generate_git_release
     name: Sentry Release
     runs-on: ubuntu-latest
     steps:
@@ -48,5 +70,5 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          version: '${{ github.event.inputs.semver }}'
+          version: "${{ steps.taggerFinal.outputs.new_tag }}"
           sourcemaps: "./build/assets"

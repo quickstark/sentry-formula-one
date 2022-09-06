@@ -1,4 +1,4 @@
-name: Auto Tag Dry Run
+name: Release
 
 on:
   push:
@@ -12,9 +12,9 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v3"
         with:
-          fetch-depth: '0'
+          fetch-depth: 0
 
-      - name: Minor version for each merge
+      - name: Minor Version
         id: taggerDryRun
         uses: anothrNick/github-tag-action@1.36.0
         env:
@@ -29,7 +29,7 @@ jobs:
       - name: echo tag
         run: |
           echo "The current tag is: ${{ steps.taggerDryRun.outputs.tag }}"
-          
+
       - name: echo part
         run: |
           echo "The version increment was: ${{ steps.taggerDryRun.outputs.part }}"
