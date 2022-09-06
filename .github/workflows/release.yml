@@ -14,15 +14,18 @@ on:
 
 jobs:
   git_release:
-    name: 'Release'
+    name: 'Release Dry Run'
     runs-on: 'ubuntu-latest'
 
     steps:
       # Checkout sources
-      - name: "Checkout"
-        uses: "actions/checkout@v3"
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - uses: "rui-costa/action-automatic-semver-releases@1.1.1"
+      - name: Auto Semver 
+        uses: "rui-costa/action-automatic-semver-releases@1.1.1"
         with:
           TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           SEMVER: '${{ github.event.inputs.semver }}'
