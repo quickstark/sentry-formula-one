@@ -6,6 +6,16 @@ on:
       - main
 
 jobs:
+
+  information:
+    name: Git Context 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Info
+        run: |
+            echo "github.ref_name ${{ github.ref_name }}"
+            echo "github.repository ${{ github.repository }}"
+            echo "github.event ${{ github.event }}"
   generate_git_tags:
     name: 'GitHub Tags'
     runs-on: ubuntu-latest
