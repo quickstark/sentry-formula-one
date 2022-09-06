@@ -51,12 +51,13 @@ jobs:
     name: 'GitHub Release'
     runs-on: 'ubuntu-latest'
     steps:
-      - name: Create Release
-        uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Release Action
+        uses: ncipollo/release-action@v1.10.0
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          automatic_release_tag: ${{ steps.taggerFinal.outputs.new_tag }}
+          commit: ${{ steps.taggerFinal.outputs.new_tag }}
+          token: ${{ secrets.YOUR_GITHUB_TOKEN }}
 
   generate_sentry_release:
     needs: generate_git_release
