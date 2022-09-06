@@ -21,7 +21,6 @@ jobs:
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git
-            conventional-changelog-eslint
           branches: |
             ['main']
         env:
