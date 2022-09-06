@@ -62,7 +62,7 @@ jobs:
           token: ${{ secrets.CHANGELOG_RELEASE }}
 
   generate_sentry_release:
-    needs: generate_git_release
+    needs: [generate_git_tags, generate_git_release]
     name: Sentry Release
     runs-on: ubuntu-latest
     steps:
