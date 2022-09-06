@@ -20,7 +20,7 @@ jobs:
           semantic_version: 16
           extra_plugins: |
             @semantic-release/changelog@3.0.0
-            @semantic-release/git
+            @semantic-release/git -D
           branches: |
             ['main']
         env:
