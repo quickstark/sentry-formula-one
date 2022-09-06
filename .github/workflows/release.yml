@@ -57,7 +57,7 @@ jobs:
         uses: ncipollo/release-action@v1.10.0
         with:
           commit: ${{ steps.taggerFinal.outputs.new_tag }}
-          token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+          token: ${{ secrets.CHANGELOG_RELEASE }}
 
   generate_sentry_release:
     needs: generate_git_release
