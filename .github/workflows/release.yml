@@ -23,7 +23,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v3
 
-      - uses: 'rui-costa/action-automatic-semver-releases@{latest}'
+      - uses: 'rui-costa/action-automatic-semver-releases@@1.1.1'
         with:
           TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           SEMVER: '${{ github.event.inputs.semver }}'
