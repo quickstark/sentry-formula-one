@@ -1,0 +1,21 @@
+name: "Release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  tagged-release:
+    name: "Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Build & test"
+        run: |
+          echo "Done Doing all the Release Things!"
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.CHANGELOG_RELEASE }}"
+          prerelease: false
