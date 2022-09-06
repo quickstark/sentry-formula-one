@@ -13,7 +13,7 @@ on:
         default: ''
 
 jobs:
-  release:
+  git_release:
     name: 'Release'
     runs-on: 'ubuntu-latest'
 
@@ -27,3 +27,23 @@ jobs:
           TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           SEMVER: '${{ github.event.inputs.semver }}'
           LABEL: '${{ github.event.inputs.label }}'
+
+  sentry_release:
+    needs: git_release
+    name: Sentry Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Sentry Release
+        uses: getsentry/action-release@v1.2.0
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: production
+          version: '${{ github.event.inputs.semver }}'
+          sourcemaps: "./build/assets"
