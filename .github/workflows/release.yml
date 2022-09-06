@@ -11,14 +11,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+    - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v3
         id: semantic
         with:
-          semantic_version: 16
+          semantic_version: 18.0.0
           extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/git
+            @semantic-release/commit-analyzer@8.0.1
+            @semantic-release/release-notes-generator@9.0.3
+            @semantic-release/changelog@5.0.1
+            @semantic-release/github@7.2.3
+            @semantic-release/git@9.0.0
           branches: |
             ['main']
         env:
