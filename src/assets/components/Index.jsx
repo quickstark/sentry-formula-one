@@ -16,7 +16,7 @@ export default function Index() {
 
   function handleClick() {
     setCount((count) => count + 1);
-    throw new ValidationError("Newer Error to Test");
+    throw new ValidationError("Codeowners Error to Test");
   }
 
   return (
