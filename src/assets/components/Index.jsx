@@ -4,9 +4,11 @@ import * as Sentry from "@sentry/react";
 
 import { useEnvContext } from "./Context";
 
-function UserException(message) {
-  this.message = message;
-  this.name = "Invalid User in Release sentry-formula-one";
+class ValidationError extends Error {
+  constructor(message) {
+    super(message); // (1)
+    this.name = `ERROR: from ${import.meta.env.VITE_RELEAS} `; // (2)
+  }
 }
 
 export default function Index() {
@@ -14,14 +16,7 @@ export default function Index() {
 
   function handleClick() {
     setCount((count) => count + 1);
-    throw new UserException("Newer Error to Test");
-    Sentry.withScope(function (scope) {
-      scope.addEventProcessor(function (event, hint) {
-        console.log(`With Scope: ${event}`);
-        return event;
-      });
-      Sentry.captureMessage("With Scope Test");
-    });
+    throw new ValidationError("Newer Error to Test");
   }
 
   return (
