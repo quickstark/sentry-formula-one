@@ -7,7 +7,7 @@ import { useEnvContext } from "./Context";
 class ValidationError extends Error {
   constructor(message) {
     super(message); // (1)
-    this.name = `ERROR: from ${import.meta.env.VITE_RELEAS} `; // (2)
+    this.name = `ERROR: from ${import.meta.env.VITE_RELEASE} `; // (2)
   }
 }
 
