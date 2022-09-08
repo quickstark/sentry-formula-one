@@ -1,21 +1,71 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@import "antd/dist/antd.css";
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.image-wrapper {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  clear: both;
+}
+
+.ant-descriptions-title {
+  font-size: 3em;
+}
+
+.ant-descriptions-item-label {
   text-align: center;
+  font-size: 1.4em;
+}
+
+.ant-card {
+  margin: auto;
+  width: auto;
+}
+
+.content-wrapper {
+  margin: 50px 50px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
 }
-.logo:hover {
+
+.logoqs {
+  width: 160px;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+[data-theme="dark"] .site-layout .site-layout-background {
+  background: #141414;
+}
+
+/* .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
-}
+} */
 
 @keyframes logo-spin {
   from {

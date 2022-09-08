@@ -1,7 +1,11 @@
 import * as Sentry from "@sentry/react";
-import { Layout as AntLayout } from "antd";
+import {
+  Breadcrumb as AntBreadcrumb,
+  Menu as AntMenu,
+  Layout as AntLayout,
+} from "antd";
 import React from "react";
-import "./index.css";
+import "antd/dist/antd.css";
 
 const {
   Header: AntHeader,
@@ -9,6 +13,15 @@ const {
   Sider: AntSider,
   Content: AntContent,
 } = AntLayout;
+
+// Import iconography
+import {
+  HomeOutlined,
+  NumberOutlined,
+  InfoCircleOutlined,
+  ApartmentOutlined,
+  CodeSandboxOutlined,
+} from "@ant-design/icons";
 
 // Import the Environment Contenxt
 import { EnvProvider } from "./assets/components/Context";
@@ -35,15 +48,57 @@ function App(count, setCount) {
   return (
     <React.StrictMode>
       <EnvProvider>
-        <AntLayout hasSider>
-          <AntSider>Navigation</AntSider>
-          <AntLayout>
-            <AntHeader></AntHeader>
-            <AntContent>
-              <Index></Index>
-            </AntContent>
-            <AntFooter></AntFooter>
-          </AntLayout>
+        <AntLayout>
+          <AntHeader
+            style={{
+              position: "fixed",
+              zIndex: 1,
+              width: "100%",
+            }}
+          >
+            <img src="/quickstark.svg" className="logo logoqs" alt="QS logo" />
+            <img src="/vite.svg" className="logo" alt="Vite logo" />
+            <img src="/react.svg" className="logo react" alt="React logo" />
+            <AntMenu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+              <AntMenu.Item key="home" icon={<HomeOutlined />}>
+                <a href="/" rel="noopener noreferrer">
+                  Home
+                </a>
+              </AntMenu.Item>
+            </AntMenu>
+          </AntHeader>
+          <AntContent
+            className="site-layout"
+            style={{
+              padding: "0 25px  ",
+              marginTop: 0,
+            }}
+          >
+            <AntBreadcrumb
+              style={{
+                margin: "16px 0",
+              }}
+            >
+              <AntBreadcrumb.Item>Home</AntBreadcrumb.Item>
+              <AntBreadcrumb.Item>List</AntBreadcrumb.Item>
+              <AntBreadcrumb.Item>App</AntBreadcrumb.Item>
+            </AntBreadcrumb>
+            <Index></Index>
+            <div
+              className="site-layout-background"
+              style={{
+                padding: 24,
+                minHeight: 380,
+              }}
+            ></div>
+          </AntContent>
+          <AntFooter
+            style={{
+              textAlign: "center",
+            }}
+          >
+            {" "}
+          </AntFooter>
         </AntLayout>
       </EnvProvider>
     </React.StrictMode>
