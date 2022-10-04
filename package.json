@@ -10,11 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@sentry/react": "^7.12.1",
+    "@sentry/react": "^7.13.0",
     "antd": "^4.23.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "react-wheel-of-prizes": "^1.0.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

@@ -1,11 +1,11 @@
 import * as Sentry from "@sentry/react";
 import {
   Breadcrumb as AntBreadcrumb,
-  Menu as AntMenu,
   Layout as AntLayout,
+  Menu as AntMenu,
 } from "antd";
-import React from "react";
 import "antd/dist/antd.css";
+import React from "react";
 
 const {
   Header: AntHeader,
@@ -15,28 +15,20 @@ const {
 } = AntLayout;
 
 // Import iconography
-import {
-  HomeOutlined,
-  NumberOutlined,
-  InfoCircleOutlined,
-  ApartmentOutlined,
-  CodeSandboxOutlined,
-} from "@ant-design/icons";
+import { HomeOutlined } from "@ant-design/icons";
 
 // Import the Environment Contenxt
 import { EnvProvider } from "./assets/components/Context";
 
 // Import Components
 import Index from "./assets/components/Index";
+import Routlette from "./assets/components/Roulette";
 
 import "./App.css";
 
 Sentry.init({
-  dsn: "https://32a888abdc564b36a8c9d4cd3cda9fb0@o1347124.ingest.sentry.io/6719200",
-  release: import.meta.env.VITE_RELEASE,
-  initialScope: {
-    tags: { release: import.meta.env.VITE_RELEASE },
-  },
+  dsn: "https://2d4f63b062ca464c8be03ebb14d0e212@o1347124.ingest.sentry.io/4503926053339136",
+  release: "sentry-formula-one@1.0.0",
   beforeSend(event, hint) {
     console.log(`Before Send`);
     console.log(event);
@@ -56,9 +48,9 @@ function App(count, setCount) {
               width: "100%",
             }}
           >
-            <img src="/quickstark.svg" className="logo logoqs" alt="QS logo" />
-            <img src="/vite.svg" className="logo" alt="Vite logo" />
-            <img src="/react.svg" className="logo react" alt="React logo" />
+            <img src="/qsglyph.png" className="logo logoqs" alt="QS logo" />
+            {/* <img src="/vite.svg" className="logo" alt="Vite logo" />
+            <img src="/react.svg" className="logo react" alt="React logo" /> */}
             <AntMenu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
               <AntMenu.Item key="home" icon={<HomeOutlined />}>
                 <a href="/" rel="noopener noreferrer">
@@ -84,6 +76,7 @@ function App(count, setCount) {
               <AntBreadcrumb.Item>App</AntBreadcrumb.Item>
             </AntBreadcrumb>
             <Index></Index>
+            {/* <Routlette></Routlette> */}
             <div
               className="site-layout-background"
               style={{

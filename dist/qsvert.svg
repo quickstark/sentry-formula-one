@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 407.48 259.49">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        fill: #dc7b27;
+      }
+
+      .cls-3 {
+        fill: #414042;
+      }
+
+      .cls-4 {
+        letter-spacing: -.05em;
+      }
+
+      .cls-5 {
+        font-family: UnsteadyOversteer-Regular, 'Unsteady Oversteer';
+        font-size: 100px;
+      }
+    </style>
+  </defs>
+  <text class="cls-5" transform="translate(5.28 101.12)"><tspan class="cls-3"><tspan class="cls-1" x="0" y="0">q</tspan><tspan x="83.3" y="0">UICK</tspan></tspan><tspan class="cls-2"><tspan x="0" y="127">s</tspan><tspan class="cls-4" x="82.9" y="127">TARK</tspan></tspan></text>
+</svg>

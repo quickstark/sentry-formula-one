@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
 @import "antd/dist/antd.css";
+
+body, html {
+  font-family: 'Rubik', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 h1,
 h2,
@@ -31,6 +36,10 @@ p {
   width: auto;
 }
 
+.ant-divider-inner-text {
+  font-size: 30px !important;
+}
+
 .content-wrapper {
   margin: 50px 50px;
 }
@@ -43,13 +52,8 @@ p {
 
 .logo {
   float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-}
-
-.logoqs {
-  width: 160px;
+  margin-top: 5px;
+  height: 50px;
 }
 
 .site-layout .site-layout-background {
